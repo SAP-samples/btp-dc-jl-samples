@@ -2,6 +2,8 @@
 
 This SAP Samples repository contains SAP Discovery Center samples for the SAP BTP foundation.
 
+[![REUSE status](https://api.reuse.software/badge/github.com/SAP-samples/btp-foundation-dc-samples)](https://api.reuse.software/info/github.com/SAP-samples/btp-foundation-dc-samples)
+
 # Containing Files
 
 1. The LICENSE file:
