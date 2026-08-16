@@ -1,6 +1,6 @@
-# Welcome to btp-foundation-dc-samples
+# Welcome to BTP Discovery Center samples 
 
-This SAP Samples repository contains SAP Discovery Center samples for the SAP BTP foundation.
+This SAP Samples repository contains SAP Discovery Center samples for the SAP BTP and Joule.
 
 # Containing Files
 
