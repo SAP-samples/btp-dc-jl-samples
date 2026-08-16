@@ -1,1 +1,11 @@
 .DS_Store
+.claude/settings.local.json
+.claude/projects/
+.claude/todos/
+.playwright-mcp/
+node_modules/
+*.log
+.env
+*.env.local
+environments/
+*.local.bru
