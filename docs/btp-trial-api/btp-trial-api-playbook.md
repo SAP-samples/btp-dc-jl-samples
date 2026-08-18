@@ -1,10 +1,10 @@
 # SAP BTP Trial API Collection (Bruno) Playbook
 
-> **How to run this playbook:** In Claude Code, type:
+> **How to run this playbook:** In an AI coding assistant (e.g. Claude Code), type:
 > ```
 > run this playbook btp-trial-api-playbook.md
 > ```
-> Claude reads the playbook, discovers your account values, creates the required service
+> The AI coding assistant reads the playbook, discovers your account values, creates the required service
 > instances/bindings via the `btp` CLI, and **writes all `bruno.json`, `.bru` request, and
 > environment files directly** — filling in your account's values. Secrets live in a single
 > **`.env`** file at the collection root (git-ignored); the environment files reference them via
@@ -194,7 +194,7 @@ btp create security/api-credential --name xsuaa-api-cred --subaccount <SUBACCOUN
 
 > **Note:** This is not a CLI step — it is done in the IAS Admin Console. Two ways to do it:
 > - **Manually** in the browser (default, most reliable), or
-> - **Semi-automated** with a **browser automation tool** (e.g. Chrome DevTools MCP, Playwright MCP) that lets an AI assistant drive the Admin Console UI. Caveats: the assistant cannot log you in (interactive SSO / 2FA stays with you), UI automation is brittle (session timeouts, layout changes), and the client secret is shown only once — so **you** still capture it. Confirm each click before it runs.
+> - **Semi-automated** with a **browser automation tool** (e.g. Chrome DevTools MCP, Playwright MCP) that lets an AI coding assistant drive the Admin Console UI. Caveats: the AI coding assistant cannot log you in (interactive SSO / 2FA stays with you), UI automation is brittle (session timeouts, layout changes), and the client secret is shown only once — so **you** still capture it. Confirm each click before it runs.
 
 Find `<IAS_HOST>` — the IAS tenant trusted by the subaccount. Run:
 
