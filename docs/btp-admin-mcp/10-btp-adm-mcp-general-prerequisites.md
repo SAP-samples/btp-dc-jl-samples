@@ -38,7 +38,7 @@ SSO OAuth client ID: `e789ba01-5612-47ee-bfe7-79e26411c1ca` (fixed, does not cha
 
 > **Caution:** The MCP server operates with the full scope of your SAP user identity — it has access to all global accounts associated with your identity. Use a dedicated trial account if you want to restrict access.
 
-For step-by-step setup instructions, see `21-btp-mcp-quick-start.md` (Claude Code / SSO) or `22-btp-adm-mcp-connect.md` (all clients and authentication modes).
+For step-by-step setup instructions, see following sections.
 
 ---
 
