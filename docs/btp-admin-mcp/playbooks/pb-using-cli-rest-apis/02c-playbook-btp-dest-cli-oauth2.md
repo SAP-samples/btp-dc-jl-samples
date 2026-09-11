@@ -1,8 +1,25 @@
-# BTP Destination — Cloud Management Service OAuth2 (Playbook)
+# Set Up BTP Destination Using BTP Cloud Management Service with btp CLI and OAuth2
+
+## AI BTP Admin Playbook
 
 Playbook for creating a BTP Destination to the SAP Cloud Management Service (technical name: `cis`) using OAuth2 Client Credentials.
 The `cis` service exposes the BTP Account Administration APIs (subaccounts, entitlements, provisioning, events).
 Generic placeholders are in `<angle brackets>`. Concrete values for the reference setup are in the table at the end.
+
+---
+
+## How to Use This Playbook
+
+Connect to your BTP-Administration MCP Server with your global account and subaccount.
+Start your local AI assistant, then pass this playbook with your account values:
+
+```
+Follow pb-using-cli-rest-apis/02c-playbook-btp-dest-cli-oauth2.md to create a CIS destination.
+```
+
+Claude reads the playbook, fills in your values, and executes each step using the btp CLI and BTP-Administration MCP Server. Before any create or write operation, Claude asks for confirmation.
+
+---
 
 ## What Is the Cloud Management Service?
 
@@ -25,13 +42,7 @@ A destination lets any BTP-connected app or integration call the CIS APIs withou
 
 ---
 
-### Usage
-
-- Copy this playbook to your project folder so your AI coding assistant can read it.
-- Connect your BTP Admin MCP Server to your trial or dev account.
-- Command: `Create a destination for the CIS API following 03c-playbook-btp-dest-oauth2-cis.md`
-
-### Prerequisites
+## Prerequisites
 
 - A BTP subaccount with `cis` plan `central` entitled
 - BTP CLI (`btp`) installed and logged in:

@@ -1,7 +1,7 @@
-# Disclaimer
+# Disclaimer for AI Playbooks
 
 
-### Read Before Use
+## Read Before Use
 
 **Using an AI to administer SAP BTP is powerful and convenient — and carries real risk.** An AI operates at machine speed, acts on live systems, and does not ask twice. One misunderstood instruction can assign wrong permissions, consume quota, or make irreversible configuration changes. Read this section before you start.
 

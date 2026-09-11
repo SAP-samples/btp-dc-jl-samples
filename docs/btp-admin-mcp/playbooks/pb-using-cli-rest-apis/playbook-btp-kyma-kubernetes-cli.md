@@ -1,10 +1,25 @@
-# BTP Kyma Landscape Setup — Playbook
+# Set Up BTP Kyma Environment Using Platform CLIs
+
+## AI BTP Admin Playbook
 
 Setup of a Kyma environment in a BTP subaccount from scratch via BTP MCP Server and CLIs.
 
-Typically you enable the Kyma runtime through the BTP Cockpit UI after entitling your subaccount. This playbook shows how to do the same step-by-step with your AI coding assistant.
+>Note: Typically you enable the Kyma runtime through the BTP Cockpit UI after entitling your subaccount. This playbook shows how to do the same step-by-step with your AI assistant.
 
 At the end is a small hello-world example to test your setup.
+
+---
+
+## How to Use This Playbook
+
+Connect to your BTP-Administration MCP Server with your global account and subaccount.
+Start your local AI assistant, then pass this playbook with your account values:
+
+```
+Follow pb-using-cli-rest-apis/playbook-btp-kyma-kubernetes-cli.md to set up a Kyma environment.
+```
+
+Claude reads the playbook, fills in your values, and executes each step using the BTP-Administration MCP Server and CLIs. Before any create or write operation, Claude asks for confirmation.
 
 ---
 
@@ -231,28 +246,31 @@ Get the cluster ID from step 5 (`APIServerURL`).
 
 ---
 
-### Hint 5: Istio Sidecar Injection Must Be Explicitly Enabled
+### Hint 1: Global Account Subdomain ≠ GUID
 
-**Problem:** APIRule remains in `Error` state: *"Pod does not have an injected istio sidecar"*.
+**Problem:** MCP tool calls fail with "resource not found" even though the global account GUID is correct.
 
-**Cause:** New namespaces do not have Istio sidecar injection enabled by default. Without the sidecar, Istio cannot route traffic.
+**Cause:** The MCP Server expects the **subdomain** of the global account, not the GUID. For some global accounts the subdomain differs from the GUID.
 
-**Solution:** Label the namespace and restart the deployment:
-```bash
-kubectl label namespace <namespace> istio-injection=enabled --overwrite
-kubectl rollout restart deployment/<name> -n <namespace>
-```
+**Solution:** Always call `GlobalAccount-list` first — the list contains both `guid` and `subdomain`. Use the `subdomain` value as the `global_account` parameter.
+
+**Steps (if the global account subdomain is unknown):**
+1. Call `GlobalAccount-list` → list of all accessible global accounts with subdomains
+2. Identify the correct global account by `display_name`
+3. Use the `subdomain` value as the `global_account` parameter for all subsequent calls
 
 ---
 
-### Hint 4: APIRule v1beta1 Is No Longer Supported
+### Hint 2: Kyma Environment Cannot Be Enabled via MCP
 
-**Problem:** `kubectl apply` fails: *"v1beta1 APIRule version is no longer supported, please use v2 instead"*.
+**Problem:** The MCP Server has no tool for enabling Kyma environments. `CloudFoundryEnvironment-enable` only works for CF — calling it for Kyma fails with "upstream rejected".
 
-**Solution:** Use `apiVersion: gateway.kyma-project.io/v2`. Key changes in v2:
-- `host` → `hosts` (list)
-- `path: /.*` → `path: /*` (no more regex, wildcard is `/*`)
-- `accessStrategies` → `noAuth: true` for public access
+**What is possible via MCP:**
+- `SubaccountEntitlement-assign` — assign `kymaruntime / aws` to the subaccount ✅
+- `Environment-list` — check whether Kyma is available in the subaccount ✅
+- `EnvironmentInstance-list` — check the status of the Kyma cluster (after activation) ✅
+
+**Solution:** Use the btp CLI (see setup step 4).
 
 ---
 
@@ -277,31 +295,28 @@ Source: [SAP Help — Provisioning Parameters Kyma](https://help.sap.com/docs/BT
 
 ---
 
-### Hint 2: Kyma Environment Cannot Be Enabled via MCP
+### Hint 4: APIRule v1beta1 Is No Longer Supported
 
-**Problem:** The MCP Server has no tool for enabling Kyma environments. `CloudFoundryEnvironment-enable` only works for CF — calling it for Kyma fails with "upstream rejected".
+**Problem:** `kubectl apply` fails: *"v1beta1 APIRule version is no longer supported, please use v2 instead"*.
 
-**What is possible via MCP:**
-- `SubaccountEntitlement-assign` — assign `kymaruntime / aws` to the subaccount ✅
-- `Environment-list` — check whether Kyma is available in the subaccount ✅
-- `EnvironmentInstance-list` — check the status of the Kyma cluster (after activation) ✅
-
-**Solution:** Use the btp CLI (see setup step 4).
+**Solution:** Use `apiVersion: gateway.kyma-project.io/v2`. Key changes in v2:
+- `host` → `hosts` (list)
+- `path: /.*` → `path: /*` (no more regex, wildcard is `/*`)
+- `accessStrategies` → `noAuth: true` for public access
 
 ---
 
-### Hint 1: Global Account Subdomain ≠ GUID
+### Hint 5: Istio Sidecar Injection Must Be Explicitly Enabled
 
-**Problem:** MCP tool calls fail with "resource not found" even though the global account GUID is correct.
+**Problem:** APIRule remains in `Error` state: *"Pod does not have an injected istio sidecar"*.
 
-**Cause:** The MCP Server expects the **subdomain** of the global account, not the GUID. For some global accounts the subdomain differs from the GUID.
+**Cause:** New namespaces do not have Istio sidecar injection enabled by default. Without the sidecar, Istio cannot route traffic.
 
-**Solution:** Always call `GlobalAccount-list` first — the list contains both `guid` and `subdomain`. Use the `subdomain` value as the `global_account` parameter.
-
-**Steps (if the global account subdomain is unknown):**
-1. Call `GlobalAccount-list` → list of all accessible global accounts with subdomains
-2. Identify the correct global account by `display_name`
-3. Use the `subdomain` value as the `global_account` parameter for all subsequent calls
+**Solution:** Label the namespace and restart the deployment:
+```bash
+kubectl label namespace <namespace> istio-injection=enabled --overwrite
+kubectl rollout restart deployment/<name> -n <namespace>
+```
 
 ---
 

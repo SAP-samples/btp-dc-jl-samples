@@ -1,24 +1,26 @@
-# Quick Start for Claude Code
+# Quick Start for BTP Administration with local AI Assistant Claude Code
 
 This guide walks you through connecting Claude Code to the MCP Server for SAP BTP Administration and running your first request. The whole process takes about five minutes.
 
 This guide uses Default Identity Provider (SAP IDS). If your platform user comes from a custom trust configured in your global account, follow the SAP Help Portal guide instead [Connect to the MCP Server for SAP BTP Administration](https://help.sap.com/docs/btp/sap-business-technology-platform/connect-to-mcp-server-for-sap-btp-administration).
 
+---
+
 ## Prerequisites
 
-**1. Example with AI assistant Claude Code**
+### Install Claude Code and Configure your LLM
 
-Install [Claude Code](https://code.claude.com/docs/en/overview) if you have not already. Choose your preferred client (e.g. terminal, VS Code, etc.)
+    Install [Claude Code](https://code.claude.com/docs/en/overview) if you have not already. Choose your preferred client (e.g. terminal, VS Code, etc.)
 
-Connect to your LLM model provider following the code assistant documentation.
-
-
-**2. Access to a BTP Global Account**
-
-You need a BTP Global Enterprise or Trial Account. 
+    Connect to your LLM model provider following the code assistant documentation.
 
 
----
+### Access your BTP Global Account
+
+You need to have access to a BTP Global Enterprise or Trial Account. 
+
+
+## Procedure
 
 ## Step 1: Register the MCP Server
 

@@ -1,4 +1,6 @@
-# BTP Admin — AI Core + AI Launchpad Setup
+# Set Up AI Core and AI Launchpad on BTP Enterprise Account
+
+## AI BTP Admin Playbook
 
 Playbook for setting up AI Core + AI Launchpad in a BTP enterprise subaccount.
 Generic placeholders are in `<angle brackets>`. Fill in your concrete values in the table at the end.
@@ -7,13 +9,13 @@ Generic placeholders are in `<angle brackets>`. Fill in your concrete values in 
 
 ---
 
-## How to use this playbook
+## How to Use This Playbook
 
-Start Claude Code, then pass this playbook with your account values:
+Connect to your BTP-Administration MCP Server with your global account and subaccount.
+Start your local AI assistant, then pass this playbook with your account values:
 
 ```
-Follow btp-enterprise-aicore-playbook.md to set up AI Core and AI Launchpad.
-My global account is <GLOBAL_ACCOUNT>, subaccount ID is <SUBACCOUNT_ID>.
+Follow 05-playbook-btp-ea-aicore.md to set up AI Core and AI Launchpad.
 ```
 
 Claude reads the playbook, fills in your values, and executes each step using the BTP-Administration MCP Server. Before any create or write operation, Claude asks for confirmation.
@@ -29,7 +31,7 @@ Claude reads the playbook, fills in your values, and executes each step using th
 | `Global Account Administrator` | Assigning entitlements (Steps 1, 3) |
 | `Subaccount Administrator` | Creating service instances, subscribing apps, assigning roles (Steps 2–4) |
 
-See `10-btp-adm-mcp-general-prerequisites.md` for full details on BTP access and CLI setup.
+See `../10-btp-adm-mcp-general-prerequisites.md` for full details on BTP access and CLI setup.
 
 ### CLIs (optional)
 
@@ -55,7 +57,7 @@ The automated steps in this playbook require the BTP-Administration MCP Server t
 
 Select `BTP-Administration` → complete browser login. Access tokens expire after 30 minutes and are renewed automatically. If you see an authorization error mid-playbook, run `/mcp` again.
 
-If BTP-Administration is not yet registered, follow `01-playbook-btp-adm-mcp-playbook.md` first.
+If BTP-Administration is not yet registered, follow `01-playbook-btp-adm-mcp-setup.md` first.
 
 ---
 
@@ -468,7 +470,7 @@ print('Total:', d['count'], 'models')"
 | 403 on SubaccountEntitlement-assign | Missing `Global Account Administrator` role | Assign role collection in BTP Cockpit, then re-run |
 | 403 on ServiceInstance-create or RoleCollection-assign | Missing `Subaccount Administrator` role | Assign role collection in BTP Cockpit, then re-run |
 | ServiceInstance-create fails | Entitlement not yet assigned | Complete Step 1 first, then retry |
-| BTP-Administration server not found | Server not registered or wrong URL | Run `claude mcp list`; follow `01-playbook-btp-adm-mcp-playbook.md` to register |
+| BTP-Administration server not found | Server not registered or wrong URL | Run `claude mcp list`; follow `01-playbook-btp-adm-mcp-setup.md` to register |
 
 ---
 

@@ -1,9 +1,27 @@
-# BTP Account Administration — REST APIs Playbook
+# BTP Account Administration using btp CLI and REST APIs 
 
-Reference for the direct SAP BTP REST APIs — for programmatic access, scripts, and CI/CD.
+## AI BTP Admin Playbook
+
+Reference for using SAP btp CLI, cf CLI and BTP REST APIs — for programmatic access, scripts, and CI/CD.
 Generic placeholders are in `<angle brackets>`, concrete values for your subaccount have to be provided in addition.
 
-> **When to use REST APIs instead of MCP Server?** When no AI client is available, for automation/scripts, or for operations not covered by the MCP server (e.g. Usage Reporting, XSUAA). With AI coding assistant (e.g. Claude Code): prefer the MCP server.
+---
+
+## How to Use This Playbook
+
+Start your local AI assistant, then pass this playbook with your account values:
+
+```
+Follow pb-using-cli-rest-apis/playbook-btp-admin-cli-apis.md to administer my BTP account.
+```
+
+Claude reads the playbook and executes the requested CLI or API operations. Before any create or write operation, Claude asks for confirmation.
+
+---
+
+## When to Use CLI and REST APIs Instead of MCP Server?
+
+When no AI client is available, for automation/scripts, or for operations not covered by the MCP server (e.g. Usage Reporting, XSUAA). With AI coding assistant (e.g. Claude Code): prefer the MCP server.
 
 For more information, see [SAP Help Portal](https://help.sap.com/docs/btp/sap-business-technology-platform/account-administration-using-apis).
 

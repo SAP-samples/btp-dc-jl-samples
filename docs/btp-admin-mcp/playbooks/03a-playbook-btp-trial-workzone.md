@@ -1,10 +1,21 @@
-# Trial BTP SAP Build Work Zone Playbook
+# Set Up SAP Build Work Zone on BTP Trial
 
-> **How to run this playbook:** In Claude Code, type:
-> ```
-> run this playbook trial-btp-workzone-playbook.md
-> ```
-> Claude will read the playbook, execute each step using the `BTP-Administration` MCP tools, and report progress. Some steps require manual action in the BTP Cockpit — these are clearly marked.
+## AI BTP Admin Playbook
+
+---
+
+## How to Use This Playbook
+
+Connect to your BTP-Administration MCP Server with your global account and subaccount.
+Start your local AI assistant, then pass this playbook with your account values:
+
+```
+Follow 03a-playbook-btp-trial-workzone.md to set up SAP Build Work Zone.
+```
+
+Claude reads the playbook, fills in your values, and executes each step using the BTP-Administration MCP Server. Before any create or write operation, Claude asks for confirmation.
+
+---
 
 ## System Details
 
@@ -37,13 +48,13 @@
 
 | Task | Status |
 |---|---|
-| Establish BTP-Administration connection and select subaccount | ✅ Step 1 |
-| Check entitlements and existing subscriptions/instances | ✅ Step 2 |
-| Check IAS trust configuration | ✅ Step 3 — IAS trust established |
-| Provision IAS tenant (Cloud Identity Services) | ✅ Step 3a — subscribed, activated |
-| Work Zone subscription (`build-workzone-standard`) | ✅ Step 4 — SUBSCRIBED |
-| Role collections assigned | ✅ Step 5 — `Launchpad_Admin` assigned via `sap.custom` |
-| Create Work Zone site | ⏸ Step 6 — optional |
+| Establish BTP-Administration connection and select subaccount | |
+| Check entitlements and existing subscriptions/instances | |
+| Check IAS trust configuration | |
+| Provision IAS tenant (Cloud Identity Services) | |
+| Work Zone subscription (`build-workzone-standard`) | |
+| Role collections assigned | |
+| Create Work Zone site | |
 
 ---
 
@@ -90,7 +101,7 @@ Look for `build-workzone-standard` with plan `standard`. If the entitlement is m
 mcp__BTP-Administration__Subscription-list  subaccount_id: <subaccount-id>
 ```
 
-Look for `build-workzone-standard` with plan `standard`. If a subscription already exists and its status is `SUBSCRIBED`, skip to Step 4.
+Look for `build-workzone-standard` with plan `standard`. If a subscription already exists and its status is `SUBSCRIBED`, skip to Step 5.
 
 **Check for an existing service instance:**
 
@@ -106,7 +117,7 @@ Look for any instance tied to `build-workzone-standard`. If one exists, note its
 
 ### Step 3 — Check IAS Trust Configuration
 
-> **Note:** If Step 2 confirmed a subscription already exists, skip to Step 4 (role assignments).
+> **Note:** If Step 2 confirmed a subscription already exists, skip to Step 5 (role assignments).
 
 Check whether the subaccount already has trust configured to an SAP Cloud Identity Services (IAS) tenant:
 

@@ -1,8 +1,31 @@
-# BTP-Administration MCP Server with Claude Code — Playbook
+# BTP Administration using MCP Server using local AI Assistant 
 
-Playbook for setting up and using the `BTP-Administration` MCP Server with a compatible AI coding assistant to manage SAP BTP accounts using natural language.
+## AI BTP Admin Playbook
 
-Compatible AI clients: Claude Code, GitHub Copilot in VS Code, OpenCode
+Playbook for setting up and using the `BTP-Administration` MCP Server with a compatible local AI client to manage SAP BTP accounts using natural language.
+
+Compatible AI clients are: Claude Code, GitHub Copilot in VS Code, OpenCode.
+
+---
+
+## How to Use This Playbook
+
+Start your local AI assistant, then pass this playbook with your preferred authentication mode:
+
+```
+Follow 01-playbook-btp-adm-mcp-setup.md to register the BTP-Administration MCP Server.
+Use SSO. My BTP user is the Default Identity Provider.
+```
+
+Or for Direct Connection:
+
+```
+Follow 01-playbook-btp-adm-mcp-setup.md to register the BTP-Administration MCP Server.
+Use Direct Connection. My IAS tenant subdomain is <IAS_SUBDOMAIN>,
+my BTP username is <USERNAME>.
+```
+
+Your AI assistant reads the playbook, runs the `claude mcp add` command for the chosen mode, and guides you through the first browser login.
 
 ---
 
@@ -29,7 +52,7 @@ BTP Cockpit → Global Account → Security → Trust Configuration
 
 ---
 
-## Installation — Claude Code (Recommended)
+## Installation Example with Claude Code
 
 ### Option A: via `claude mcp add` (one-time, persists across sessions)
 
@@ -47,8 +70,8 @@ export BTP_ORIGIN="<your-ias-tenant-subdomain>"  # omit for Default IDP
 
 claude mcp add --transport http BTP-Administration \
   "https://proxy.c-769d49e.kyma.ondemand.com/mcp" \
-  --header 'Authorization: Basic ${BTP_CREDENTIALS}' \
-  --header 'X-Platform-Origin: ${BTP_ORIGIN}'
+  --header "Authorization: Basic ${BTP_CREDENTIALS}" \
+  --header "X-Platform-Origin: ${BTP_ORIGIN}"
 ```
 
 The command only needs to be run **once** — the server remains registered across sessions.
@@ -75,7 +98,8 @@ The command only needs to be run **once** — the server remains registered acro
 
 ## Permissions
 
-The MCP server uses the permissions of the logged-in BTP user — it can only perform operations that the user is authorized to perform in the BTP Cockpit. A 403 error means the user is missing the required role collection.
+The MCP server uses the permissions of the logged-in BTP user — it can only perform operations that the user is authorized to perform in the BTP Cockpit. 
+A 403 error means the user is missing the required role collection.
 
 Commonly required role collections:
 - `Global Account Administrator` — for global account operations
@@ -181,10 +205,3 @@ For most operations Claude needs:
 
 ---
 
-## Usage in Playbooks
-
-This server is used in the following playbooks:
-
-- `09-playbook-btp-entpr-aicore.md` — AI Core + AI Launchpad setup
-- `03-playbook-btp-dest-noauth.md` — Create NoAuth destination
-- `02-playbook-btp-admin-rest-apis.md` — BTP REST APIs (for scripts/CI-CD without AI client)

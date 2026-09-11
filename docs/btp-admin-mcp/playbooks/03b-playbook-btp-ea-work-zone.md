@@ -1,10 +1,21 @@
-# SAP Build Work Zone Standard Edition — Setup Playbook
+# Set Up SAP Build Work Zone, standard edition on BTP Enterprise Account
 
-> **How to run this playbook:** In Claude Code, type:
-> ```
-> run this playbook btp-enterprise-acc-work-zone-playbook.md
-> ```
-> Claude will read the playbook, execute each step using the `BTP-Administration` MCP tools, and report progress. Some steps require manual action in the BTP Cockpit — these are clearly marked.
+## AI BTP Admin Playbook
+
+---
+
+## How to Use This Playbook
+
+Connect to your BTP-Administration MCP Server with your global account and subaccount.
+Start your local AI assistant, then pass this playbook with your account values:
+
+```
+Follow 03b-playbook-btp-ea-work-zone.md to set up SAP Build Work Zone, standard edition.
+```
+
+Claude reads the playbook, fills in your values, and executes each step using the BTP-Administration MCP Server. Before any create or write operation, Claude asks for confirmation.
+
+---
 
 ## Context
 
@@ -185,7 +196,7 @@ mcp__BTP-Administration__RoleCollection-assign
 | External app calling Work Zone APIs | ❌ No | ✅ Yes |
 | CI/CD automation of Work Zone content | ❌ No | ✅ Yes |
 
-**For this Joule setup: the service instance is NOT needed.** The subscription alone is sufficient.
+**For a Work Zone subscription without API access, the service instance is NOT needed.** The subscription alone is sufficient.
 
 If you do need it:
 

@@ -1,4 +1,6 @@
-# BTP Admin — Integration Suite Setup (Trial)
+# Set Up SAP Integration Suite on BTP Trial Account
+
+## AI BTP Admin Playbook
 
 Playbook for setting up SAP Integration Suite in a BTP trial subaccount.
 Generic placeholders are in `<angle brackets>`. Fill in your concrete values in the table at the end.
@@ -7,13 +9,13 @@ Generic placeholders are in `<angle brackets>`. Fill in your concrete values in 
 
 ---
 
-## How to use this playbook
+## How to Use This Playbook
 
-Start Claude Code, then pass this playbook with your account values:
+Connect to your BTP-Administration MCP Server with your global account and subaccount.
+Start your local AI assistant, then pass this playbook with your account values:
 
 ```
-Follow playbook-trial-btp-integrationsuite.md to set up Integration Suite.
-My global account is <GLOBAL_ACCOUNT>, subaccount ID is <SUBACCOUNT_ID>.
+Follow 04-playbook-btp-trial-integrationsuite.md to set up Integration Suite.
 ```
 
 Claude reads the playbook, fills in your values, and executes each step using the BTP-Administration MCP Server. Before any create or write operation, Claude asks for confirmation.
@@ -29,7 +31,7 @@ Claude reads the playbook, fills in your values, and executes each step using th
 | `Global Account Administrator` | Assigning entitlements |
 | `Subaccount Administrator` | Subscribing apps, assigning roles |
 
-See `10-btp-adm-mcp-general-prerequisites.md` for full details on BTP access and CLI setup.
+See `../10-btp-adm-mcp-general-prerequisites.md` for full details on BTP access and CLI setup.
 
 ### CLIs (optional)
 
@@ -49,7 +51,7 @@ The automated steps require the BTP-Administration MCP Server to be registered a
 
 Select `BTP-Administration` → complete browser login. Access tokens expire after 30 minutes and are renewed automatically. If you see an authorization error mid-playbook, run `/mcp` again.
 
-If BTP-Administration is not yet registered, follow `01-playbook-btp-adm-mcp-playbook.md` first.
+If BTP-Administration is not yet registered, follow `01-playbook-btp-adm-mcp-setup.md` first.
 
 ---
 

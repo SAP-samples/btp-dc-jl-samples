@@ -1,4 +1,6 @@
-# BTP Destination — SAP Business Accelerator Hub Sandbox (Playbook)
+# Set Up a BTP Destination with SAP Business Accelerator Hub Sandbox 
+
+## AI BTP Admin Playbook
 
 Playbook for creating a BTP Destination to the SAP Business Accelerator Hub sandbox.
 The sandbox uses a static API key passed as a custom request header — no OAuth token exchange required.
@@ -6,13 +8,21 @@ Generic placeholders are in `<angle brackets>`. Concrete values for the referenc
 
 ---
 
-### Usage
+## How to Use This Playbook
 
-- Copy this playbook to your project folder so your AI coding assistant can read it.
-- Connect your BTP Admin MCP Server to your trial or dev account.
-- Command: `Create a destination for the SAP Business Accelerator Hub sandbox following 03b-playbook-btp-dest-apihub-sandbox.md`
+Connect to your BTP-Administration MCP Server with your global account and subaccount.
+Start your local AI assistant, then pass this playbook with your account values:
 
-### Prerequisites
+```
+Follow 02b-playbook-btp-dest-apihub-sandbox.md to create a destination.
+My API Hub API key is <API_KEY>.
+```
+
+Claude reads the playbook, fills in your values, and executes each step using the BTP-Administration MCP Server. Before any create or write operation, Claude asks for confirmation.
+
+---
+
+## Prerequisites
 
 - A free SAP Universal ID account at [api.sap.com](https://api.sap.com)
 - Your **API Key** from the SAP Business Accelerator Hub (Settings → Show API Key)

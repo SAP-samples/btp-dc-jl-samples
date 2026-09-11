@@ -1,4 +1,4 @@
-# Connect to the MCP Server for SAP BTP Administration
+# Connect to the BTP Administration MCP Server
 
 Register the MCP Server for SAP BTP Administration in your AI client to start managing your BTP account using natural language.
 
@@ -50,12 +50,14 @@ For SSO, you must also provide the OAuth client ID when registering the server: 
 1. Open a terminal and run the following command:
 
    ```bash
-   claude mcp add --transport http BTP-Administration \
+   claude mcp add --transport http --scope user BTP-Administration \
      "https://sso.mcp.btp.cloud.sap/mcp" \
      --client-id e789ba01-5612-47ee-bfe7-79e26411c1ca
    ```
 
-   You only need to run this command once — the server remains registered across sessions.
+   You only need to run this command once — the server remains registered across sessions and in all projects.
+
+   > **Note:** The `--scope user` flag registers the server globally in your user profile, so it is available regardless of which directory you run `claude` from. Without this flag, registration defaults to `local` scope (tied to the current directory).
 
 2. Start Claude Code: `claude`
 3. Type `/mcp` at the prompt and select the server you registered.
@@ -237,6 +239,7 @@ If you encounter errors during or after connecting, refer to the common causes a
 | Authentication fails: identity provider not recognized or tenant not found. | The IAS tenant subdomain in your Direct Connection configuration is incorrect or missing. | Check the subdomain value: **Claude Code:** Verify that `BTP_ORIGIN` is set correctly and exported in the shell where you run `claude`. **GitHub Copilot in VS Code:** Check the `X-Platform-Origin` header value in your `mcp.json`. **OpenCode:** Check the `X-Platform-Origin` header value in your `opencode.json`. You can find the correct subdomain in the SAP BTP Cockpit under your global account trust configuration. If your platform user comes from the Default Identity Provider (accounts.sap.com), omit this header entirely. |
 | A tool call returns a 403 error or an "operation not authorized" message. | Your BTP user is missing the role collection required for the requested operation. The MCP Server enforces the same role-based access control as the SAP BTP Cockpit. | Check the error message for the name of the required role collection, then ask your administrator to assign it to your user in the SAP BTP Cockpit. No reconnection is needed after the assignment. |
 | The MCP server does not appear after registration, or the client cannot reach it. | The server URL or client ID is incorrect, or the required environment variables are not available in the current shell session. | **Claude Code:** Run `claude mcp list` to verify the registered URL. If incorrect, run `claude mcp remove <server-name>` and re-register. For Direct Connection, confirm that `BTP_CREDENTIALS` and `BTP_ORIGIN` are exported in your current shell. **GitHub Copilot in VS Code:** Check the URL in `.vscode/mcp.json`. **OpenCode:** Check the URL and, for SSO, the `clientId` value in `opencode.json`. |
+| **Claude Code:** The MCP server was registered successfully but does not appear in `/mcp` when working in a project directory. | `claude mcp add` without `--scope` defaults to `local` scope, which is tied to the directory where the command was run. If you ran it from your home directory (`~`) instead of from within your project, the server is registered under `~` and is not visible inside other project directories. | Re-register the server with user scope so it is available in all projects: `claude mcp add --transport http --scope user BTP-Administration "https://sso.mcp.btp.cloud.sap/mcp" --client-id e789ba01-5612-47ee-bfe7-79e26411c1ca`. Alternatively, `cd` into your project directory first and run the original command without `--scope`. |
 
 ### Reporting an Issue
 

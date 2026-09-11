@@ -1,15 +1,23 @@
-# BTP Destination — Northwind (Playbook)
+# Set Up a BTP Destination with Northwind OData Service
+
+## AI BTP Admin Playbook
 
 Playbook for creating a BTP Destination to an OData service.
 Generic placeholders are in `<angle brackets>`, concrete values for the reference setup must be provided in addition.
 
 ---
 
-### Usage
+## How to Use This Playbook
 
-- Copy this playbook to your project folder, so your AI Coding Assistant can read it.
-- Connect your BTP Admin MCP Server to your trial or dev account.
-- Command: create a destination for northwind v4 following `03-playbook-btp-dest-noauth.md`
+Connect to your BTP-Administration MCP Server with your global account and subaccount.
+Start your local AI assistant, then pass this playbook with your account values:        
+
+```
+Follow 02a-playbook-btp-dest-noauth.md to create a destination.
+Destination name: Northwind, URL: https://services.odata.org/V4/Northwind/Northwind.svc/
+```
+
+Claude reads the playbook, fills in your values, and executes each step using the BTP-Administration MCP Server. Before any create or write operation, Claude asks for confirmation.
 
 ---
 
@@ -58,7 +66,7 @@ mcp__BTP-Administration__Destination-create(
 
 
 
-**Manually (BTP Cockpit):**
+**Manually (Using BTP Cockpit):**
 1. BTP Cockpit → `<SUBACCOUNT>` → Connectivity → Destinations → **New Destination**
 2. Fill in the fields:
 
@@ -106,7 +114,6 @@ mcp__BTP-Administration__Destination-get(
 | Component | Status |
 |---|---|
 | Destination `Northwind` | |
-| Usage | Joule capability configuration |
 
 ---
 
@@ -143,4 +150,4 @@ mcp__BTP-Administration__Destination-create(
 ```
 
 **Example command:**
-> "Add a destination for `https://petstore3.swagger.io/api/v3/openapi.json` following `03-playbook-btp-dest-noauth.md`"
+> "Add a destination for `https://petstore3.swagger.io/api/v3/openapi.json` following `02a-playbook-btp-dest-noauth.md`"
